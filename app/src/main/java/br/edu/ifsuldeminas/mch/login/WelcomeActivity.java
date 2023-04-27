@@ -18,6 +18,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private static final String TAG = "act.bem_vindo";
     private static final int FOTO_ACTIVITY = 1;
+    private Intent intentResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,9 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivityForResult(tiraFotoIntent, FOTO_ACTIVITY);
             }
         });
+        intentResult = new Intent();
+        intentResult.putExtra("resultado", "não tirou a foto");
+        setResult(RESULT_OK, intentResult);
     }
 
     @Override
@@ -64,6 +68,13 @@ public class WelcomeActivity extends AppCompatActivity {
 
             ImageView imageView = findViewById(R.id.imageViewId);
             imageView.setImageBitmap(foto);
+            intentResult.putExtra("resultado", "tirou a foto");
+            setResult(RESULT_OK, intentResult);
         }
+    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

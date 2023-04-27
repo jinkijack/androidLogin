@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
             new SimpleContract(), new ActivityResultCallback<String>() {
                 @Override
                 public void onActivityResult(String result) {
-                    if(result.equals("")){
-                        Toast t = Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT);
+                    if(!result.equals("")){
+                        Toast t = Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG);
                         t.show();
                     }
 
@@ -62,12 +62,16 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (USUARIO.equals(nomeUsuario) && SENHA.equals(senha)) {
+                    /*
                     Intent intent = new Intent(getApplicationContext(),
                             WelcomeActivity.class);
 
                     intent.putExtra("USER", nomeUsuario);
 
                     startActivity(intent);
+                    */
+                    String nome = "batata";
+                    startActivitWelcome.launch(nome);
                 } else {
                     Toast.makeText(view.getContext(),
                             R.string.user_ou_senha_invalido,
